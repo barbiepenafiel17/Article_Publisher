@@ -1,5 +1,5 @@
 <?php
-include 'db_connect.php'; 
+include 'db_connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Fetch and sanitize user input
@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $full_name = ucwords($_POST["full_name"]);  // Capitalize the first letter of each word in the full name
     $email = $_POST["email"];
     $password = $_POST["password"];
-    
+
     // Limit password to 10 characters
     if (strlen($password) > 10) {
         echo "<script>alert('Password must be 10 characters or less.'); window.history.back();</script>";
@@ -47,15 +47,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Signup - DBCLM College</title>
-    <link rel="stylesheet" href="signup.css">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - DBCLM College</title>
+    <link rel="stylesheet" href="css/signup.css">
 </head>
+
 <body>
-    <nav class="navbar">
-        <div class="logo">DBCLM COLLEGE</div>
+
+    <header class="navbar">
+        <div class="logo">
+            <img src="images/FinalLogo.jpg" alt="DBCLM Logo">
+        </div>
         <ul>
             <li><a href="#">Home</a></li>
             <li><a href="#">Latest</a></li>
@@ -63,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <li><a href="#">Contact</a></li>
             <li><a href="login.php">Login</a></li>
         </ul>
-    </nav>
+    </header>
 
     <div class="signup-container">
         <div class="form-card">
@@ -78,7 +83,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <input type="text" name="full_name" placeholder="Enter your full name" required>
                 <input type="email" name="email" placeholder="Enter your DBCLM email (e.g. you@dbclm.com)" required>
-                <input type="password" name="password" placeholder="Create a strong password (max 10 characters)" required>
+                <input type="password" name="password" placeholder="Create a strong password (max 10 characters)"
+                    required>
                 <input type="password" placeholder="Confirm your password" required>
                 <select name="institute" required>
                     <option value="">Select Institute</option>
@@ -100,11 +106,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <div>
                 <h4>Quick Links</h4>
-                <p>Home</p><p>Latest</p><p>About</p><p>Contact Us</p>
+                <p>Home</p>
+                <p>Latest</p>
+                <p>About</p>
+                <p>Contact Us</p>
             </div>
             <div>
                 <h4>Categories</h4>
-                <p>Academics</p><p>Sports</p><p>Arts and Culture</p><p>Faculty Spotlight</p>
+                <p>Academics</p>
+                <p>Sports</p>
+                <p>Arts and Culture</p>
+                <p>Faculty Spotlight</p>
             </div>
         </div>
     </footer>
@@ -117,4 +129,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     </script>
 </body>
+
 </html>

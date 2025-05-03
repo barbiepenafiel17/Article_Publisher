@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>DBCLM College</title>
-  <link rel="stylesheet" href="publish.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publish Article - DBCLM College</title>
+  <link rel="stylesheet" href="css/publish.css">
 </head>
+
 <body>
 
-<header class="navbar">
+  <header class="navbar">
     <div class="logo">
-      <img src="images/LOGO.jpg" alt="DBCLM Logo">
+      <img src="images/FinalLogo.jpg" alt="DBCLM Logo">
     </div>
     <nav class="nav-links">
       <a href="#">Home</a>
@@ -17,12 +20,14 @@
       <a href="#">About</a>
       <a href="#">Contact</a>
     </nav>
-  <div class="navbar-right">
-    <img src="images/bell.png" alt="Notifications" class="icon-bell">
-    <span class="user-label">USER</span>
-  </div>
+    <div class="navbar-right">
+      <div class="notification-wrapper" style="position: relative;">
+        <img src="images/bell.jpg" alt="Notifications" class="icon-bell" id="notif-bell" style="cursor:pointer;">
+      </div>
+      <span class="user-label">USER</span>
+    </div>
   </header>
-  
+
   <section class="featured-article">
     <div class="text-section">
       <span class="tag">Featured Article</span>
@@ -35,8 +40,10 @@
         </div>
       </div>
       <p class="description">
-        Every school year brings opportunities for students to learn beyond the classroom, and this year was no exception.
-        A wide range of events were held throughout the academic year, showcasing student talents, promoting camaraderie,
+        Every school year brings opportunities for students to learn beyond the classroom, and this year was no
+        exception.
+        A wide range of events were held throughout the academic year, showcasing student talents, promoting
+        camaraderie,
         and strengthening the school spirit.
       </p>
       <a href="#" class="read-more">Read More →</a>
@@ -50,7 +57,7 @@
     <div class="submit-content">
       <h2>Share Your Knowledge with the Community</h2>
       <p>
-        Have insights or research to share? Submit your article to our platform and 
+        Have insights or research to share? Submit your article to our platform and
         reach educators and students across the institution.
       </p>
       <a href="#" class="submit-btn">
@@ -130,33 +137,34 @@
   </div>
 
   <footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-about">
-      <p>Keeping the community<br>informed and connected.</p>
+    <div class="footer-container">
+      <div class="footer-about">
+        <p>Keeping the community<br>informed and connected.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li>Home</li>
+          <li>Latest</li>
+          <li>About</li>
+          <li>Contact us</li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Categories</h4>
+        <ul>
+          <li>Academics</li>
+          <li>Sports</li>
+          <li>Arts and Culture</li>
+          <li>Faculty Spotlight</li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-links">
-      <h4>Quick Links</h4>
-      <ul>
-        <li>Home</li>
-        <li>Latest</li>
-        <li>About</li>
-        <li>Contact us</li>
-      </ul>
+    <div class="footer-bottom">
+      <p>© 2025 Speechforge. All rights reserved.</p>
     </div>
-    <div class="footer-links">
-      <h4>Categories</h4>
-      <ul>
-        <li>Academics</li>
-        <li>Sports</li>
-        <li>Arts and Culture</li>
-        <li>Faculty Spotlight</li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 Speechforge. All rights reserved.</p>
-  </div>
-</footer>
+  </footer>
 
 </body>
+
 </html>
