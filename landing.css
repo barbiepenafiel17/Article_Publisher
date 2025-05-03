@@ -1,0 +1,264 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: white;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .logo img {
+    height: 50px;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .nav-links a,
+  .login a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+  }
+  
+  .login {
+    margin-left: auto;
+  }
+  
+  /* Banner */
+  .banner {
+    position: relative;
+    text-align: right;
+    margin: 20px;
+  }
+  
+  .banner img {
+    width: 100%;
+    border-radius: 10px;
+    max-height: 400px;
+    object-fit: cover;
+  }
+  
+  .publish-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: white;
+    border: none;
+    font-weight: bold;
+    padding: 10px 16px;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+    
+  }
+  
+  /* Latest News */
+  .latest-news {
+    padding: 40px 20px;
+  }
+  
+  .section-subtitle {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #444;
+  }
+  
+  .latest-news h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 15px;
+  }
+  
+  .grid-item {
+    background-color: #ddd;
+    border-radius: 10px;
+    height: 200px;
+  }
+  
+  /* View All */
+  .view-all {
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px 20px;
+    display: block;
+    margin: 20px auto;
+    font-weight: bold;
+    border-radius: 5px;
+  }
+  
+  /* Mission Section */
+  .mission-section {
+    padding: 60px 20px;
+    background-color: white;
+  }
+  
+  .mission-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+  }
+  
+  .mission-image img {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 10px;
+    background-color: #ddd;
+  }
+  
+  .mission-text {
+    max-width: 500px;
+    text-align: center;
+  }
+  
+  .mission-subtitle {
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 1px;
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  .mission-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .mission-description {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+  }
+  
+  /* Developers Section */
+  .developers-section {
+    padding: 50px 20px;
+    text-align: center;
+  }
+  
+  .developers-header p {
+    font-size: 18px;
+    margin: 0;
+  }
+  
+  .developers-header h2 {
+    font-size: 32px;
+    margin: 10px 0 30px;
+  }
+  
+  .developer-slider {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .slider-arrow {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+  }
+  
+  .developer-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .dev-card {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    background: #ccc;
+  }
+  
+  /* ---- FOOTER (unchanged as you requested) ---- */
+  .site-footer {
+    background-color: #05055c;
+    color: white;
+    padding: 40px 20px 20px;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: left;
+    gap: 40px;
+  }
+  
+  .footer-about p {
+    max-width: 200px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  .footer-links h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  
+  .footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 12px;
+    color: #ccc;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .nav-links {
+      justify-content: center;
+      margin-left: 0;
+      gap: 15px;
+    }
+  
+    .login {
+      margin-left: 0;
+    }
+  
+    .mission-text {
+      text-align: center;
+      padding: 0 10px;
+    }
+  }
+  

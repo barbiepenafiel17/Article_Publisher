@@ -1,0 +1,235 @@
+/* ad.css */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    display: flex;
+    background-color: #f9f9f9;
+  }
+  
+  .sidebar {
+    width: 260px;
+    background: white;
+    border-right: 1px solid #ddd;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100vh;
+  }
+  
+  .sidebar h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+  
+  .sidebar nav a {
+    display: block;
+    padding: 0.75rem 1rem;
+    margin: 0.25rem 0;
+    text-decoration: none;
+    font-weight: 600;
+    color: #333;
+    border-radius: 8px;
+  }
+  
+  .sidebar nav a.active {
+    background-color: #1e1ef7;
+    color: white;
+  }
+  
+  .sidebar a:hover {
+    background-color: #eee;
+  }
+  
+  .content {
+    flex-grow: 1;
+    padding: 2rem;
+  }
+  
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .stats {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .stat-card {
+    flex: 1;
+    background: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: center;
+  }
+  
+  .stat-card h2 {
+    margin: 0.25rem 0 0;
+    font-size: 24px;
+    color: #111;
+  }
+  
+  .filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .filters input,
+  .filters select,
+  .filters button {
+    padding: 0.6rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  
+  .filters button {
+    background-color: #1e1ef7;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  
+  th, td {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    font-size: 14px;
+  }
+  
+  th {
+    font-weight: 600;
+    color: #555;
+  }
+  
+  /* ROLE LABEL STYLES */
+  .role {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+  }
+  
+  .role.admin {
+    background-color: #4A90E2;
+  }
+  
+  .role.author {
+    background-color: #C084FC;
+  }
+  
+  .role.editor {
+    background-color: #34D399;
+  }
+  
+  .role.teacher {
+    background-color: #38bdf8; /* Light Blue */
+  }
+  
+  .role.student {
+    background-color: #f97316; /* Orange */
+  }
+  
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  
+  .status.active::before,
+  .status.pending::before,
+  .status.inactive::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  
+  .status.active::before {
+    background-color: #22C55E; /* Green */
+  }
+  
+  .status.pending::before {
+    background-color: #FACC15; /* Yellow */
+  }
+  
+  .status.inactive::before {
+    background-color: #EF4444; /* Red */
+  }
+  
+  /* BUTTON STYLES */
+  .actions button {
+    padding: 0.4rem 0.75rem;
+    border-radius: 5px;
+    margin-right: 0.4rem;
+    font-size: 13px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .accept-btn {
+    background-color: #28c76f;
+    color: white;
+  }
+  
+  .accept-btn:hover {
+    background-color: #22bb66;
+  }
+  
+  .reject-btn {
+    background-color: #ff4c4c;
+    color: white;
+  }
+  
+  .reject-btn:hover {
+    background-color: #e63946;
+  }
+  
+  .view-btn {
+    background-color: #e0e0e0;
+    color: black;
+  }
+  
+  .view-btn:hover {
+    background-color: #d6d6d6;
+  }
+  
+  /* MODAL */
+  #rejectModal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    display: none;
+    border-radius: 8px;
+  }
+  
+ 
+  
