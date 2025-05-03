@@ -1,4 +1,4 @@
-<?php    
+<?php
 session_start();
 $conn = new mysqli("localhost", "root", "", "dbclm_college");
 
@@ -15,9 +15,9 @@ if (!isset($_SESSION['user_id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user_id = $_SESSION['user_id'];
-    $upload_path = NULL; 
+    $upload_path = NULL;
 
-   
+
     if (isset($_FILES['featured_image']) && $_FILES['featured_image']['error'] === 0) {
         $upload_dir = 'uploads/';
         if (!is_dir($upload_dir)) {
@@ -43,21 +43,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Form data (safe to do here, with or without an image)
     $title = $_POST['title'];
-    $institute = $_POST['institute'];
     $abstract = $_POST['abstract'];
-    $content = $_POST['content'];
     $comments_enabled = isset($_POST['comments']) ? 1 : 0;
-    $private = isset($_POST['private']) ? 1 : 0;
+    $private = isset($_POST['private']) ? 1 : 0; // Keep this variable for future use if needed
     $notifications = isset($_POST['notifications']) ? 1 : 0;
 
+    // Because your 'id' field doesn't have AUTO_INCREMENT, we need to get the max id and increment it
+    $result = $conn->query("SELECT MAX(id) as max_id FROM articles");
+    $row = $result->fetch_assoc();
+    $next_id = ($row['max_id'] ?? 0) + 1;
+
     // SQL insert (allow featured_image to be NULL)
-    $stmt = $conn->prepare("INSERT INTO articles (title, institute, abstract, content, featured_image, comments_enabled, private, notifications, user_id, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'PENDING')");
+    $stmt = $conn->prepare("INSERT INTO articles (id, title, abstract, featured_image, comments_enabled, notifications, user_id, status) VALUES (?, ?, ?, ?, ?, ?, ?, 'PENDING')");
 
     if ($stmt === false) {
         die("❌ MySQL prepare error: " . $conn->error);
     }
 
-    $stmt->bind_param("sssssiiii", $title, $institute, $abstract, $content, $upload_path, $comments_enabled, $private, $notifications, $user_id);
+    // Note: "isssiis" → i for id (int), sss for strings, ii for booleans, i for user_id (int)
+    $stmt->bind_param("isssiis", $next_id, $title, $abstract, $upload_path, $comments_enabled, $notifications, $user_id);
 
     if ($stmt->execute()) {
         header("Location: newsfeed.php?submitted=1");

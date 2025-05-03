@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Prepare the notification message
                 $message = "🎉 Your article titled '{$article_title}' has been approved!";
 
-                // Insert notification into the database
+                // Insert notification into the database - Modified to exclude id field from insertion
                 $notif_stmt = $conn->prepare("INSERT INTO notifications (user_id, message, is_read, created_at) VALUES (?, ?, 0, NOW())");
                 $notif_stmt->bind_param("is", $author_id, $message);
 

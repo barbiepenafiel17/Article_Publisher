@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>DBCLM College</title>
   <link rel="stylesheet" href="landing.css">
 </head>
+
 <body>
 
   <header class="navbar">
@@ -24,7 +26,7 @@
 
   <section class="banner">
     <img src="headers.png" alt="Library Banner">
-    <button class="publish-btn" >
+    <button class="publish-btn">
       <a href="login.php">PUBLISH ARTICLE</a>
     </button>
   </section>
@@ -33,81 +35,125 @@
     <p class="section-subtitle">THE LATEST</p>
     <h2>Featured News</h2>
 
-<div class="grid-container">
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-  <div class="grid-item"></div>
-</div>
+    <div class="grid-container" id="articleGrid">
+      <!-- Articles will be loaded here via JavaScript -->
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        fetch('filter_feed.php', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            institutes: ['All'],
+            sort: 'most_likes' // Show most popular articles on landing page
+          })
+        })
+          .then(response => response.json())
+          .then(articles => {
+            const grid = document.getElementById('articleGrid');
+            grid.innerHTML = '';
+
+            articles.forEach(article => {
+              const gridItem = document.createElement('div');
+              gridItem.className = 'grid-item';
+
+              gridItem.innerHTML = `
+                <div class="article-card">
+                    <img src="${article.featured_image || 'default-article.jpg'}" alt="${article.title}">
+                    <h3>${article.title}</h3>
+                    <p>${article.abstract?.substring(0, 100) || ''}${article.abstract?.length > 100 ? '...' : ''}</p>
+                    <div class="article-stats">
+                        <span>👍 ${article.likes}</span>
+                        <span>💬 ${article.comments}</span>
+                    </div>
+                </div>
+            `;
+
+              grid.appendChild(gridItem);
+            });
+          })
+          .catch(error => {
+            console.error('Error loading articles:', error);
+            document.getElementById('articleGrid').innerHTML =
+              '<p>Error loading articles. Please try again later.</p>';
+          });
+      });
+    </script>
 
     <button class="view-all">View All Articles →</button>
   </section>
 
   <section class="mission-section">
-  <div class="mission-container">
-    <div class="mission-image">
-      <img src="mv.jpg" alt="Our Mission">
+    <div class="mission-container">
+      <div class="mission-image">
+        <img src="mv.jpg" alt="Our Mission">
+      </div>
+      <div class="mission-text">
+        <p class="mission-subtitle">ABOUT US</p>
+        <h2 class="mission-title">Our Mission & Vision</h2>
+        <p class="mission-description">
+          Our mission is to provide a platform where students can express their ideas, enhance their writing skills, and
+          share meaningful stories within the school community. We aim to foster creativity, critical thinking, and
+          collaboration through student-led publishing. Our vision is to become a trusted and inspiring source of
+          student-driven content that encourages communication, showcases talent, and strengthens the voice of the youth
+          in our school.
+        </p>
+      </div>
     </div>
-    <div class="mission-text">
-      <p class="mission-subtitle">ABOUT US</p>
-      <h2 class="mission-title">Our Mission & Vision</h2>
-      <p class="mission-description">
-        Our mission is to provide a platform where students can express their ideas, enhance their writing skills, and share meaningful stories within the school community. We aim to foster creativity, critical thinking, and collaboration through student-led publishing. Our vision is to become a trusted and inspiring source of student-driven content that encourages communication, showcases talent, and strengthens the voice of the youth in our school.
-      </p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section class="developers-section">
-  <div class="developers-header">
-    <p>From Vision to Reality</p>
-    <h2>The Developers</h2>
-  </div>
-
-  <div class="developer-slider">
-    <button class="slider-arrow">&lt;</button>
-
-    <div class="developer-cards"><img src="marj.jpg" class="dev-card">
-      <div class="dev-card"><img src="lai.jpg" class="dev-card"></div>
-      <div class="dev-card"><img src="dona.jpg" class="dev-card"></div>
-      <div class="dev-card"><img src="barb.jpg" class="dev-card"></div>
-      <div class="dev-card"><img src="cheni.jpg" class="dev-card"></div>
+  <section class="developers-section">
+    <div class="developers-header">
+      <p>From Vision to Reality</p>
+      <h2>The Developers</h2>
     </div>
 
-    <button class="slider-arrow">&gt;</button>
-  </div>
-</section>
+    <div class="developer-slider">
+      <button class="slider-arrow">&lt;</button>
 
-<footer class="site-footer">
-  <div class="footer-container">
-    <div class="footer-about">
-      <p>Keeping the community<br>informed and connected.</p>
+      <div class="developer-cards"><img src="marj.jpg" class="dev-card">
+        <div class="dev-card"><img src="lai.jpg" class="dev-card"></div>
+        <div class="dev-card"><img src="dona.jpg" class="dev-card"></div>
+        <div class="dev-card"><img src="barb.jpg" class="dev-card"></div>
+        <div class="dev-card"><img src="cheni.jpg" class="dev-card"></div>
+      </div>
+
+      <button class="slider-arrow">&gt;</button>
     </div>
-    <div class="footer-links">
-      <h4>Quick Links</h4>
-      <ul>
-        <li>Home</li>
-        <li>Latest</li>
-        <li>About</li>
-        <li>Contact us</li>
-      </ul>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-about">
+        <p>Keeping the community<br>informed and connected.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li>Home</li>
+          <li>Latest</li>
+          <li>About</li>
+          <li>Contact us</li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Categories</h4>
+        <ul>
+          <li>Academics</li>
+          <li>Sports</li>
+          <li>Arts and Culture</li>
+          <li>Faculty Spotlight</li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-links">
-      <h4>Categories</h4>
-      <ul>
-        <li>Academics</li>
-        <li>Sports</li>
-        <li>Arts and Culture</li>
-        <li>Faculty Spotlight</li>
-      </ul>
+    <div class="footer-bottom">
+      <p>© 2025 Speechforge. All rights reserved.</p>
     </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 Speechforge. All rights reserved.</p>
-  </div>
-</footer>
+  </footer>
 
 </body>
+
 </html>

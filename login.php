@@ -1,4 +1,4 @@
-<?php 
+<?php
 include 'db_connect.php';
 session_start();
 
@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $result = $stmt->get_result();
     $user = $result->fetch_assoc();
-    
+
     $_SESSION['user_id'] = $user['id'];
     $_SESSION['full_name'] = $user['full_name'];
     $_SESSION['email'] = $user['email'];
@@ -65,64 +65,68 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - DBCLM College</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="css/login.css">
 </head>
+
 <body>
 
-<header class="navbar">
-    <div class="logo">
-        <img src="FinalLogo.jpg" alt="DBCLM Logo">
-    </div>
-    <nav class="nav-links">
-        <a href="newsfeed.php">Home</a>
-        <a href="#">Latest</a>
-        <a href="#">About</a>
-        <a href="#">Contact</a>
-    </nav>
-    <div class="navbar-right">
-        <img src="bell.jpg" alt="Notifications" class="icon-bell">
-        <span class="user-label">
-            <?php echo isset($_SESSION['full_name']) ? htmlspecialchars($_SESSION['full_name']) : 'Guest'; ?>
-        </span>
-    </div>
-</header>
-
-<div class="login-container">
-    <form method="post" action="">
-        <img src="FinalLogo.jpg" alt="DBCLM College" class="loginlogo">
-        <h2>Sign in to Your Account</h2>
-
-        <?php if (!empty($loginError)): ?>
-            <p style="color: red;"><?php echo $loginError; ?></p>
-        <?php endif; ?>
-
-        <input type="email" name="email" placeholder="Enter your email" required>
-        <input type="password" name="password" placeholder="Password" id="passwordInput" required>
-
-        <label>
-            <input type="checkbox" onclick="togglePassword()"> Show Password
-        </label>
-
-        <label><input type="checkbox" name="remember"> Remember me</label>
-
-        <button type="submit">Sign In</button>
-
-        <div class="footer-links">
-            <a href="#">Forgot password?</a><br>
-            <a href="signup.php">Don't have an account? Sign up</a>
+    <header class="navbar">
+        <div class="logo">
+            <img src="images/FinalLogo.jpg" alt="DBCLM Logo">
         </div>
-    </form>
-</div>
+        <nav class="nav-links">
+            <a href="newsfeed.php">Home</a>
+            <a href="#">Latest</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="navbar-right">
+            <img src="images/bell.jpg" alt="Notifications" class="icon-bell">
+            <span class="user-label">
+                <?php echo isset($_SESSION['full_name']) ? htmlspecialchars($_SESSION['full_name']) : 'Guest'; ?>
+            </span>
+        </div>
+    </header>
 
-<script>
-    function togglePassword() {
-        const passwordField = document.getElementById('passwordInput');
-        passwordField.type = passwordField.type === "password" ? "text" : "password";
-    }
-</script>
+    <div class="login-container">
+        <form method="post" action="">
+            <img src="images/FinalLogo.jpg" alt="DBCLM College" class="loginlogo">
+            <h2>Sign in to Your Account</h2>
+
+            <?php if (!empty($loginError)): ?>
+                <p style="color: red;"><?php echo $loginError; ?></p>
+            <?php endif; ?>
+
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <input type="password" name="password" placeholder="Password" id="passwordInput" required>
+
+            <label>
+                <input type="checkbox" onclick="togglePassword()"> Show Password
+            </label>
+
+            <label><input type="checkbox" name="remember"> Remember me</label>
+
+            <button type="submit">Sign In</button>
+
+            <div class="footer-links">
+                <a href="#">Forgot password?</a><br>
+                <a href="signup.php">Don't have an account? Sign up</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('passwordInput');
+            passwordField.type = passwordField.type === "password" ? "text" : "password";
+        }
+    </script>
 
 </body>
+
 </html>

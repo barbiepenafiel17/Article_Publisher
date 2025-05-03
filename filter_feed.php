@@ -1,38 +1,54 @@
 <?php
-// Connect to your DB
-$conn = new mysqli("localhost", "root", "", "dbclm_college");
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+header('Content-Type: application/json');
+include 'db_connect.php';
 
 $data = json_decode(file_get_contents("php://input"), true);
 $institutes = $data['institutes'] ?? [];
+$sort = $data['sort'] ?? 'newest'; // Default sorting option
 
-if (in_array("All", $institutes) || empty($institutes)) {
-    $sql = "SELECT * FROM user WHERE status = 'approved' ORDER BY created_at DESC";
-} else {
+$query = "
+    SELECT a.*, u.full_name, u.profile_picture, u.institute,
+        (SELECT COUNT(*) FROM reactions WHERE article_id = a.id AND reaction_type = 'like') AS likes,
+        (SELECT COUNT(*) FROM comments WHERE article_id = a.id) AS comments
+    FROM articles a
+    JOIN users u ON a.user_id = u.id
+    WHERE a.status = 'approved'
+";
+
+// Filter by institute based on the user's institute field
+if (!in_array("All", $institutes) && !empty($institutes)) {
     $placeholders = implode(',', array_fill(0, count($institutes), '?'));
-    $sql = "SELECT * FROM user WHERE institute IN ($placeholders) AND status = 'approved' ORDER BY created_at DESC";
+    $query .= " AND u.institute IN ($placeholders)";
 }
 
-$stmt = $conn->prepare($sql);
+// Add sorting options
+switch ($sort) {
+    case 'oldest':
+        $query .= " ORDER BY a.created_at ASC";
+        break;
+    case 'most_likes':
+        $query .= " ORDER BY likes DESC, a.created_at DESC";
+        break;
+    case 'most_comments':
+        $query .= " ORDER BY comments DESC, a.created_at DESC";
+        break;
+    case 'newest':
+    default:
+        $query .= " ORDER BY a.created_at DESC";
+        break;
+}
+
+$query .= " LIMIT 6";
+
+$stmt = $pdo->prepare($query);
 
 if (!in_array("All", $institutes) && !empty($institutes)) {
-    $types = str_repeat('s', count($institutes));
-    $stmt->bind_param($types, ...$institutes);
+    $stmt->execute($institutes);
+} else {
+    $stmt->execute();
 }
 
-$stmt->execute();
-$result = $stmt->get_result();
+$articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-while ($row = $result->fetch_assoc()) {
-    echo "<div class='article-card'>";
-    echo "<h3>" . htmlspecialchars($row['title']) . "</h3>";
-    echo "<p><strong>Institute:</strong> " . htmlspecialchars($row['institute']) . "</p>";
-    echo "<p>" . nl2br(htmlspecialchars($row['abstract'])) . "</p>";
-    echo "</div>";
-}
-
-$conn->close();
+echo json_encode($articles);
 ?>
