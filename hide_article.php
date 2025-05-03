@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 require 'db_connect.php';
 
@@ -17,14 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['article_id']) && isse
     $stmt->bind_param("ii", $userId, $articleId);
 
     if ($stmt->execute()) {
+        $stmt->close();
         header("Location: newsfeed.php");
         exit;
     } else {
+        $stmt->close();
         // Handle execute error
         die("Error hiding article: " . $stmt->error);
     }
-
-    $stmt->close();
 } else {
     // Invalid request
     die("Invalid request.");
